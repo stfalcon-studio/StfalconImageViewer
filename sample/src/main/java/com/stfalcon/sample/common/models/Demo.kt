@@ -2,7 +2,7 @@ package com.stfalcon.sample.common.models
 
 object Demo {
 
-    private const val POSTERS_PATH = "https://raw.githubusercontent.com/stfalcon-studio/FrescoImageViewer/v.0.5.0/images/posters"
+    private const val POSTERS_PATH = "https://raw.githubusercontent.com/stfalcon-studio/StfalconImageViewer/master/images/posters"
 
     val posters = listOf(
         Poster(url = "$POSTERS_PATH/Vincent.jpg", description = "Vincent Vega is a hitman and associate of Marsellus Wallace. He had a brother named Vic Vega who was shot and killed by an undercover cop while on a job. He worked in Amsterdam for over three years and recently returned to Los Angeles, where he has been partnered with Jules Winnfield."),
