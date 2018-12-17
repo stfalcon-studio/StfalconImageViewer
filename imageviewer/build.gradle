@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    api 'androidx.appcompat:appcompat:1.0.2'
+    api 'androidx.transition:transition:1.0.1'
+    implementation 'com.github.chrisbanes:PhotoView:2.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+// Avoid Kotlin docs error
+tasks.withType(Javadoc) {
+    enabled = false
+}
+
+// Remove javadoc related tasks
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}

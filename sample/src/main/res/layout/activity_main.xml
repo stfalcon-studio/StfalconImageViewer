@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:id="@+id/mainLogoImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_stfalcon_bird"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/mainTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="@dimen/activity_margin"
+            android:layout_marginStart="@dimen/activity_margin"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:includeFontPadding="false"
+            android:text="@string/app_title"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toTopOf="@+id/mainCardsViewPager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainLogoImage"/>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/mainCardsViewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingBottom="30dp"
+            android:paddingEnd="@dimen/card_padding"
+            android:paddingStart="@dimen/card_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainTitleText"/>
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/mainCardsPagerIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:ci_drawable="@drawable/ic_circle_accent"
+            app:ci_drawable_unselected="@drawable/ic_circle_accent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

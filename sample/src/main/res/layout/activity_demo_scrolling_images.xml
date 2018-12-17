@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        app:cardBackgroundColor="@color/backgroundDark"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="12dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:id="@+id/scrollingHorizontalScrollView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="sans-serif-medium"
+                            android:drawableBottom="@drawable/ic_arrow_right"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text="@string/scroll_me_horizontally"
+                            android:textAllCaps="true"
+                            android:textColor="@color/textColorSecondary"/>
+
+                        <ImageView
+                            android:id="@+id/scrollingHorizontalFirstImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:ignore="ContentDescription"/>
+
+                        <ImageView
+                            android:id="@+id/scrollingHorizontalSecondImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            tools:ignore="ContentDescription"/>
+
+                        <ImageView
+                            android:id="@+id/scrollingHorizontalThirdImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            tools:ignore="ContentDescription"/>
+
+                        <ImageView
+                            android:id="@+id/scrollingHorizontalFourthImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            tools:ignore="ContentDescription"/>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:id="@+id/scrollingVerticalLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="sans-serif-medium"
+                    android:drawableTop="@drawable/ic_arrow_up"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@string/scroll_me_vertically"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColorSecondary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/scrollingHorizontalScrollView"/>
+
+                <ImageView
+                    android:id="@+id/scrollingVerticalFirstImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="W,16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/scrollingVerticalLabel"
+                    tools:ignore="ContentDescription"/>
+
+                <ImageView
+                    android:id="@+id/scrollingVerticalSecondImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintDimensionRatio="W,16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/scrollingVerticalFirstImage"
+                    tools:ignore="ContentDescription"/>
+
+                <ImageView
+                    android:id="@+id/scrollingVerticalThirdImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintDimensionRatio="W,16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/scrollingVerticalSecondImage"
+                    tools:ignore="ContentDescription"/>
+
+                <ImageView
+                    android:id="@+id/scrollingVerticalFourthImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintDimensionRatio="W,16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/scrollingVerticalThirdImage"
+                    tools:ignore="ContentDescription"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

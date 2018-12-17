@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ImageViewerDialog" parent="android:Theme.Translucent.NoTitleBar"/>
+
+    <style name="ImageViewerDialog.NoStatusBar" parent="android:Theme.Translucent.NoTitleBar.Fullscreen"/>
+
+    <style name="ImageViewerDialog.Default" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+</resources>

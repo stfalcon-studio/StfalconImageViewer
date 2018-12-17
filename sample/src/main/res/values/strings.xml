@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">StfalconImageViewer Sample</string>
+
+    <string name="app_title">Stfalcon Image Viewer</string>
+
+    <string name="action_images_grid">Images Grid</string>
+    <string name="action_scroll">Transitions on scroll</string>
+    <string name="action_style">Styled view</string>
+    <string name="action_rotation">Rotation support</string>
+
+    <string name="description_images_grid">A simple demo of the viewer usage. The fastest way to implement.</string>
+    <string name="description_scroll">A sample of open and close transition in case of usage inside the vertical or horizontal scroll container</string>
+    <string name="action_description_styled_view">Playground with configurable options for viewer styling. Overlay view, custom margins, padding etc.</string>
+    <string name="description_rotation_support">Example of how to handle activity rotation.</string>
+
+    <string name="check_out">Check out</string>
+
+    <string name="message_on_dismiss">The viewer has been dismissed!</string>
+
+    <string name="scroll_me_horizontally">Scroll me\nhorizontally</string>
+    <string name="scroll_me_vertically">Scroll me\nvertically</string>
+
+    <string-array name="styling_options">
+        <item>hide status bar</item>
+        <item>images margin</item>
+        <item>container padding</item>
+        <item>transitions</item>
+        <item>swipe-to-dismiss</item>
+        <item>zooming</item>
+        <item>show overlay</item>
+        <item>random background</item>
+    </string-array>
+
+</resources>
