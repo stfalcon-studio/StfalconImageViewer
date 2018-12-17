@@ -65,7 +65,7 @@ class StylingDemoActivity : BaseActivity() {
         builder.withHiddenStatusBar(options.isPropertyEnabled(HIDE_STATUS_BAR))
 
         if (options.isPropertyEnabled(IMAGES_MARGIN)) {
-            builder.withImagesMargin(this, R.dimen.image_margin)
+            builder.withImagesMargin(R.dimen.image_margin)
         }
 
         if (options.isPropertyEnabled(CONTAINER_PADDING)) {

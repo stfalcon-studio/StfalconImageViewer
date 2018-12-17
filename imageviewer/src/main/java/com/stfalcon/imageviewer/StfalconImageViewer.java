@@ -122,12 +122,13 @@ public class StfalconImageViewer<T> {
         }
 
         /**
-         * Sets a background color resource for the viewer
+         * Sets a position to start viewer from.
          *
          * @return This Builder object to allow calls chaining
          */
-        public Builder<T> withBackgroundColorResource(@ColorRes int color) {
-            return this.withBackgroundColor(ContextCompat.getColor(context, color));
+        public Builder<T> withStartPosition(int position) {
+            this.data.setStartPosition(position);
+            return this;
         }
 
         /**
@@ -141,23 +142,12 @@ public class StfalconImageViewer<T> {
         }
 
         /**
-         * Sets a position to start viewer from.
+         * Sets a background color resource for the viewer
          *
          * @return This Builder object to allow calls chaining
          */
-        public Builder<T> withStartPosition(int position) {
-            this.data.setStartPosition(position);
-            return this;
-        }
-
-        /**
-         * Sets {@link OnImageChangeListener} for the viewer.
-         *
-         * @return This Builder object to allow calls chaining
-         */
-        public Builder<T> withImageChangeListener(OnImageChangeListener imageChangeListener) {
-            this.data.setImageChangeListener(imageChangeListener);
-            return this;
+        public Builder<T> withBackgroundColorResource(@ColorRes int color) {
+            return this.withBackgroundColor(ContextCompat.getColor(context, color));
         }
 
         /**
@@ -176,7 +166,7 @@ public class StfalconImageViewer<T> {
          *
          * @return This Builder object to allow calls chaining
          */
-        public Builder<T> withImagesMargin(Context context, @DimenRes int dimen) {
+        public Builder<T> withImagesMargin(@DimenRes int dimen) {
             this.data.setImageMarginPixels(Math.round(context.getResources().getDimension(dimen)));
             return this;
         }
@@ -268,22 +258,32 @@ public class StfalconImageViewer<T> {
         }
 
         /**
-         * Sets {@link OnDismissListener} for viewer.
-         *
-         * @return This Builder object to allow calls chaining
-         */
-        public Builder<T> withDismissListener(OnDismissListener onDismissListener) {
-            this.data.setOnDismissListener(onDismissListener);
-            return this;
-        }
-
-        /**
          * Sets a target {@link ImageView} to be part of transition when opening or closing the viewer/
          *
          * @return This Builder object to allow calls chaining
          */
         public Builder<T> withTransitionFrom(ImageView imageView) {
             this.data.setTransitionView(imageView);
+            return this;
+        }
+
+        /**
+         * Sets {@link OnImageChangeListener} for the viewer.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withImageChangeListener(OnImageChangeListener imageChangeListener) {
+            this.data.setImageChangeListener(imageChangeListener);
+            return this;
+        }
+
+        /**
+         * Sets {@link OnDismissListener} for viewer.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withDismissListener(OnDismissListener onDismissListener) {
+            this.data.setOnDismissListener(onDismissListener);
             return this;
         }
 
