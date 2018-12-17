@@ -19,8 +19,8 @@ object Demo {
     val horizontalImages = listOf(
         "$MISC_PATH/horizontal_colorful_1.jpg",
         "$MISC_PATH/square_colorful.jpg",
-        "$MISC_PATH/horizontal_colorful_3.jpg",
-        "$MISC_PATH/horizontal_colorful_4.jpg"
+        "$MISC_PATH/horizontal_colorful_2.jpg",
+        "$MISC_PATH/horizontal_colorful_3.jpg"
     )
 
     val verticalImages = listOf(
