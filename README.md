@@ -41,8 +41,8 @@ Where the `latest_version` is the value from `Download` badge.
 All you need to show the viewer is to pass the context, list or array of your image objects and the implementation of the `ImageLoader` and call the `show()` method:
 ```java
 StfalconImageViewer.Builder<Image>(context, images) { view, image ->
-            Picasso.get().load(image.url).into(view)
-        }.show()
+    Picasso.get().load(image.url).into(view)
+}.show()
 ```
 Piece of cake!
 
