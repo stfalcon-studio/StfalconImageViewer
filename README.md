@@ -1,4 +1,5 @@
 [![codebeat badge](https://codebeat.co/badges/91ce76f4-cba6-4971-aad7-070e635d11be)](https://codebeat.co/projects/github-com-stfalcon-studio-stfalconimageviewer-master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/23c4c8c6f44541a8bfdb0e385da2436a)](https://www.codacy.com/app/troy.carvill/StfalconImageViewer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stfalcon-studio/StfalconImageViewer&amp;utm_campaign=Badge_Grade)
 [![Download](https://api.bintray.com/packages/troy379/maven/StfalconImageViewer/images/download.svg) ](https://bintray.com/troy379/maven/StfalconImageViewer/_latestVersion)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -19,12 +20,12 @@ Need iOS and Android apps, MVP development or prototyping? Contact us via info@s
 [![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=com.stfalcon.stfalconimageviewersample)
 
 ### Install
-Download via Gradle:
+Download via **Gradle**:
 ```gradle
 implementation 'com.github.stfalcon:stfalcon-imageviewer:latest_version'
 ```
 
-or Maven:
+or **Maven**:
 ```
 <dependency>
   <groupId>com.github.stfalcon</groupId>
