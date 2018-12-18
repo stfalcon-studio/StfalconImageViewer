@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/879ca514a8a34aeead03f8c25537fb78)](https://app.codacy.com/app/troy.carvill/StfalconImageViewer?utm_source=github.com&utm_medium=referral&utm_content=stfalcon-studio/StfalconImageViewer&utm_campaign=Badge_Grade_Dashboard)
 [![codebeat badge](https://codebeat.co/badges/91ce76f4-cba6-4971-aad7-070e635d11be)](https://codebeat.co/projects/github-com-stfalcon-studio-stfalconimageviewer-master)
 [![Download](https://api.bintray.com/packages/troy379/maven/StfalconImageViewer/images/download.svg) ](https://bintray.com/troy379/maven/StfalconImageViewer/_latestVersion)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
