@@ -21,11 +21,23 @@ Need iOS and Android apps, MVP development or prototyping? Contact us via info@s
 
 ### Install
 Download via **Gradle**:
+
+Add this to the **project `build.gradle`** file:
+```gradle
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+And then add the dependency to the **module `build.gradle`** file:
 ```gradle
 implementation 'com.github.stfalcon:stfalcon-imageviewer:latest_version'
 ```
 
-or **Maven**:
+Download via **Maven**:
 ```
 <dependency>
   <groupId>com.github.stfalcon</groupId>
