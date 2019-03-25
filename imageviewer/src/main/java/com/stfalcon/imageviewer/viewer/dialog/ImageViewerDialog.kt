@@ -82,8 +82,9 @@ internal class ImageViewerDialog<T>(
             } else {
                 viewerView.close()
             }
+            return true
         }
-        return true
+        return false
     }
 
     private fun setupViewerView() {
