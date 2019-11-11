@@ -68,6 +68,11 @@ internal class ImageViewerDialog<T>(
     fun getCurrentPosition(): Int =
         viewerView.currentPosition
 
+    fun setCurrentPosition(position: Int): Int {
+        viewerView.currentPosition = position
+        return viewerView.currentPosition
+    }
+
     fun updateTransitionImage(imageView: ImageView?) {
         viewerView.updateTransitionImage(imageView)
     }

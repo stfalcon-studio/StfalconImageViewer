@@ -96,6 +96,10 @@ public class StfalconImageViewer<T> {
         return dialog.getCurrentPosition();
     }
 
+    public int setCurrentPosition(int position){
+        return dialog.setCurrentPosition(position);
+    }
+
     /**
      * Updates transition image view.
      * Useful for a case when image position has changed and you want to update the transition animation target.
