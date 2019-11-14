@@ -152,7 +152,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
             return true
         }
 
-        if (transitionImageAnimator.isAnimating) {
+        if (!this::transitionImageAnimator.isInitialized || transitionImageAnimator.isAnimating) {
             return true
         }
 
