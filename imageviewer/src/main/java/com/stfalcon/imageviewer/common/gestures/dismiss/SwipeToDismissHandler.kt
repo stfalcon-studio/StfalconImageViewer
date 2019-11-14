@@ -70,7 +70,7 @@ internal class SwipeToDismissHandler(
     }
 
     internal fun initiateDismissToBottom() {
-        animateTranslation(swipeView.height.toFloat(), ANIMATION_DURATION)
+        animateTranslation(swipeView.height.toFloat())
     }
 
     private fun onTrackingEnd(parentHeight: Int) {
@@ -83,14 +83,14 @@ internal class SwipeToDismissHandler(
         if (animateTo != 0f && !shouldAnimateDismiss()) {
             onDismiss()
         } else {
-            animateTranslation(animateTo, ANIMATION_DURATION)
+            animateTranslation(animateTo)
         }
     }
 
-    private fun animateTranslation(translationTo: Float, duration: Long) {
+    private fun animateTranslation(translationTo: Float) {
         swipeView.animate()
             .translationY(translationTo)
-            .setDuration(duration)
+            .setDuration(ANIMATION_DURATION)
             .setInterpolator(AccelerateInterpolator())
             .setUpdateListener { onSwipeViewMove(swipeView.translationY, translationLimit) }
             .setAnimatorListener(onAnimationEnd = {

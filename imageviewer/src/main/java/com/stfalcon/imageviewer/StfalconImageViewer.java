@@ -68,16 +68,16 @@ public class StfalconImageViewer<T> {
     }
 
     /**
-     * Dismisses the viewer
+     * Closes the viewer with suitable close animation
      */
-    public void dismiss() {
+    public void close() {
         dialog.close();
     }
 
     /**
-     * Dismisses the alert dialog
+     * Dismisses the dialog with no animation
      */
-    public void dismissDialog() {
+    public void dismiss() {
         dialog.dismiss();
     }
 
