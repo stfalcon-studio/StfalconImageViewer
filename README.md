@@ -67,6 +67,9 @@ If you need more advanced behavior like updating transition target while changin
 #### Update images list on the fly
 There are a lot of common cases (such as pagination, deleting, editing etc.) where you need to update the existing images list while the viewer is running. To do this you can simply update the existing list (or even replace it with a new one) and then call `updateImages(images)`.
 
+#### Change current image
+Images are not always leafed through by the user. Maybe you want to implement some kind of preview list at the bottom of the viewer - `setCurrentPosition` is here for help. Change images programmatically wherever you want!
+
 #### Custom overlay view
 If you need to show some content over the image (e.g. sharing or download button, description, numeration etc.) you can set your own custom view using the `setOverlayView(customView)` and bind it with the viewer through the `ImageViewer.OnImageChangeListener`.
 
