@@ -75,6 +75,13 @@ public class StfalconImageViewer<T> {
     }
 
     /**
+     * Dismisses the alert dialog
+     */
+    public void dismissDialog() {
+        dialog.dismiss();
+    }
+
+    /**
      * Updates an existing images list if a new list is not empty, otherwise closes the viewer
      */
     public void updateImages(T[] images) {

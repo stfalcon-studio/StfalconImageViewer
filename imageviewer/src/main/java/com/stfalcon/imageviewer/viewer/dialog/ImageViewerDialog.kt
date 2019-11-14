@@ -61,6 +61,10 @@ internal class ImageViewerDialog<T>(
         viewerView.close()
     }
 
+    fun dismiss() {
+        dialog.dismiss()
+    }
+
     fun updateImages(images: List<T>) {
         viewerView.updateImages(images)
     }
