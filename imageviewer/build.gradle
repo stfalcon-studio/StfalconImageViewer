@@ -3,30 +3,29 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
 }
 
 publish {
+    userOrg = 'troy379'
     groupId = 'com.github.stfalcon'
     artifactId = 'stfalcon-imageviewer'
     publishVersion = '0.1.0'
     desc = 'A customizable full-screen image viewer with shared image transition support, "pinch to zoom" and "swipe to dismiss" gestures.'
-    licences = ['Apache-2.0']
     uploadName='StfalconImageViewer'
     website = 'https://github.com/stfalcon-studio/StfalconImageViewer'
-    userOrg = 'troy379'
 }
 
 dependencies {
-    api 'androidx.appcompat:appcompat:1.0.2'
-    api 'androidx.transition:transition:1.0.1'
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.transition:transition:1.2.0'
     implementation 'com.github.chrisbanes:PhotoView:2.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

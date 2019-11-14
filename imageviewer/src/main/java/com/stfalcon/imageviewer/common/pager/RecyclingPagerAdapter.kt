@@ -31,7 +31,7 @@ internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHol
 
     override fun getCount() = getItemCount()
 
-    override fun getItemPosition(item: Any) = PagerAdapter.POSITION_NONE
+    override fun getItemPosition(item: Any) = POSITION_NONE
 
     @Suppress("UNCHECKED_CAST")
     override fun instantiateItem(parent: ViewGroup, position: Int): Any {
@@ -43,15 +43,15 @@ internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHol
         }
 
         return cache.getFreeViewHolder(parent, VIEW_TYPE_IMAGE)
-            .apply {
-                attach(parent, position)
-                onBindViewHolder(this as VH, position)
-                onRestoreInstanceState(savedStates.get(getItemId(position)))
-            }
+                .apply {
+                    attach(parent, position)
+                    onBindViewHolder(this as VH, position)
+                    onRestoreInstanceState(savedStates.get(getItemId(position)))
+                }
     }
 
     override fun isViewFromObject(view: View, obj: Any): Boolean =
-        obj is ViewHolder && obj.itemView === view
+            obj is ViewHolder && obj.itemView === view
 
     override fun saveState(): Parcelable? {
         for (viewHolder in getAttachedViewHolders()) {
@@ -63,7 +63,8 @@ internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHol
     override fun restoreState(state: Parcelable?, loader: ClassLoader?) {
         if (state != null && state is Bundle) {
             state.classLoader = loader
-            savedStates = if (state.containsKey(STATE)) state.getSparseParcelableArray(STATE) else SparseArray()
+            val sparseArray: SparseArray<Parcelable>? = state.getSparseParcelableArray(STATE)
+            savedStates = sparseArray ?: SparseArray()
         }
         super.restoreState(state, loader)
     }
@@ -85,7 +86,7 @@ internal abstract class RecyclingPagerAdapter<VH : RecyclingPagerAdapter.ViewHol
     }
 
     private class RecycleCache internal constructor(
-        private val adapter: RecyclingPagerAdapter<*>
+            private val adapter: RecyclingPagerAdapter<*>
     ) {
 
         internal val caches = mutableListOf<ViewHolder>()
