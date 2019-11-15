@@ -26,11 +26,11 @@ internal enum class SwipeDirection {
     companion object {
         fun fromAngle(angle: Double): SwipeDirection {
             return when (angle) {
-                in 0..45 -> RIGHT
-                in 45..135 -> UP
-                in 135..225 -> LEFT
-                in 225..315 -> DOWN
-                in 315..360 -> RIGHT
+                in 0.0..45.0 -> RIGHT
+                in 45.0..135.0 -> UP
+                in 135.0..225.0 -> LEFT
+                in 225.0..315.0 -> DOWN
+                in 315.0..360.0 -> RIGHT
                 else -> NOT_DETECTED
             }
         }
