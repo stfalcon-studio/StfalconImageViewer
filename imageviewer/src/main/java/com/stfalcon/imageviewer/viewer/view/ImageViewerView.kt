@@ -177,6 +177,10 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
         findViewById<View>(R.id.backgroundView).setBackgroundColor(color)
     }
 
+    override fun setAlpha(alpha: Float){
+        findViewById<View>(R.id.backgroundView).alpha = alpha
+    }
+
     internal fun setImages(images: List<T>, startPosition: Int, imageLoader: ImageLoader<T>) {
         this.images = images
         this.imageLoader = imageLoader

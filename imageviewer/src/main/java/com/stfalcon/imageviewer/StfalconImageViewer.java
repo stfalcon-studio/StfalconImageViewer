@@ -153,6 +153,16 @@ public class StfalconImageViewer<T> {
         }
 
         /**
+         * Sets a background alpha value for the viewer
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withBackgroundAlpha(float alpha) {
+            this.data.setBackgroundAlpha(alpha);
+            return this;
+        }
+
+        /**
          * Sets a background color resource for the viewer
          *
          * @return This Builder object to allow calls chaining

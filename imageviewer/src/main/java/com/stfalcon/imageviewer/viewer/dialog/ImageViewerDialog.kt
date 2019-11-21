@@ -106,6 +106,7 @@ internal class ImageViewerDialog<T>(
             overlayView = builderData.overlayView
 
             setBackgroundColor(builderData.backgroundColor)
+            alpha = builderData.backgroundAlpha
             setImages(builderData.images, builderData.startPosition, builderData.imageLoader)
 
             onPageChange = { position -> builderData.imageChangeListener?.onImageChange(position) }

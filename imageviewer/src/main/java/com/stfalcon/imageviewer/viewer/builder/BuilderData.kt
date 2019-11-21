@@ -38,4 +38,5 @@ internal class BuilderData<T>(
     var isZoomingAllowed = true
     var isSwipeToDismissAllowed = true
     var transitionView: ImageView? = null
+    var backgroundAlpha = 0f
 }
