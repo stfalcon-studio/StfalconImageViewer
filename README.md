@@ -109,7 +109,6 @@ StfalconImageViewer.Builder<String>(this, images, ::loadImage)
             .withTransitionFrom(targeImageView)
             .withImageChangeListener(::onImageChanged)
             .withDismissListener(::onViewerDismissed)
-            .withDismissListener(::onViewerDismissed)
 ```
 
 Also, you can take a look at the [sample project](https://github.com/stfalcon-studio/StfalconImageViewer/tree/master/sample) for more information.
