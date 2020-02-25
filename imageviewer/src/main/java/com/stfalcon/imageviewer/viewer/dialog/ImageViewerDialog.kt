@@ -104,6 +104,7 @@ internal class ImageViewerDialog<T>(
             containerPadding = builderData.containerPaddingPixels
             imagesMargin = builderData.imageMarginPixels
             overlayView = builderData.overlayView
+            imageFullFocusEnabled = builderData.imageFullFocusEnabled
 
             setBackgroundColor(builderData.backgroundColor)
             setImages(builderData.images, builderData.startPosition, builderData.imageLoader)

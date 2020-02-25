@@ -17,6 +17,7 @@
 package com.stfalcon.imageviewer.viewer.view
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
@@ -83,6 +84,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
             field = value
             value?.let { rootContainer.addView(it) }
         }
+    internal var imageFullFocusEnabled = false
 
     private var rootContainer: ViewGroup
     private var backgroundView: View
@@ -104,6 +106,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
     private var wasDoubleTapped = false
     private var isOverlayWasClicked: Boolean = false
     private var swipeDirection: SwipeDirection? = null
+    private var setBackgroundColor: Int? = null
 
     private var images: List<T> = listOf()
     private var imageLoader: ImageLoader<T>? = null
@@ -166,6 +169,9 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
         handleUpDownEvent(event)
 
         if (swipeDirection == null && (scaleDetector.isInProgress || event.pointerCount > 1 || wasScaled)) {
+            if (!wasScaled) {
+                setImageFullFocus(true)
+            }
             wasScaled = true
             return imagesPager.dispatchTouchEvent(event)
         }
@@ -175,6 +181,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
 
     override fun setBackgroundColor(color: Int) {
         findViewById<View>(R.id.backgroundView).setBackgroundColor(color)
+        setBackgroundColor = color
     }
 
     internal fun setImages(images: List<T>, startPosition: Int, imageLoader: ImageLoader<T>) {
@@ -307,8 +314,29 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
 
     private fun handleSingleTap(event: MotionEvent, isOverlayWasClicked: Boolean) {
         if (overlayView != null && !isOverlayWasClicked) {
-            overlayView?.switchVisibilityWithAnimation()
+            setImageFullFocus(overlayView.isVisible)
+            if (!imageFullFocusEnabled) {
+                overlayView?.switchVisibilityWithAnimation()
+            }
             super.dispatchTouchEvent(event)
+        }
+    }
+
+    private fun setImageFullFocus(fullFocus: Boolean) {
+        if (imageFullFocusEnabled) {
+            if (fullFocus) {
+                systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE
+                backgroundView.setBackgroundColor(Color.BLACK)
+            } else {
+                systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+                setBackgroundColor?.let {
+                    backgroundView.setBackgroundColor(it)
+                }
+            }
+            if (overlayView?.isVisible == fullFocus) {
+                overlayView?.switchVisibilityWithAnimation()
+            }
         }
     }
 
@@ -338,6 +366,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
                 false
             },
             onDoubleTap = {
+                setImageFullFocus(true)
                 wasDoubleTapped = !isScaled
                 false
             }

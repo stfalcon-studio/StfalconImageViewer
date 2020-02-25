@@ -86,6 +86,9 @@ For setting a padding in pixels, just use the `withContainerPadding(...)` method
 #### Status bar visibility
 Control the status bar visibility of the opened viewer by using the `withHiddenStatusBar(boolean)` method (`true` by default)
 
+#### Image full focus
+Hide everything but the image when interacting with the image by using the `withImageFullFocusEnabled(boolean)` method (`false` by default)
+
 #### Gestures
 If you need to disable some of the gestures - you can use the `allowSwipeToDismiss(boolean)` and `allowZooming(boolean)` methods accordingly.
 
@@ -107,6 +110,7 @@ StfalconImageViewer.Builder<String>(this, images, ::loadImage)
             .allowZooming(isZoomingAllowed)
             .allowSwipeToDismiss(isSwipeToDismissAllowed)
             .withTransitionFrom(targeImageView)
+            .withImageFullFocusEnabled(true)
             .withImageChangeListener(::onImageChanged)
             .withDismissListener(::onViewerDismissed)
             .withDismissListener(::onViewerDismissed)
