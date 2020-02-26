@@ -16,8 +16,6 @@
 
 package com.stfalcon.imageviewer.listeners;
 
-import com.stfalcon.imageviewer.viewer.dialog.ImageViewerDialog;
-
 /**
  * Interface definition for a callback to be invoked when current image position was changed.
  */

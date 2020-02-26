@@ -16,29 +16,22 @@
 
 package com.stfalcon.imageviewer.viewer.dialog
 
-import android.app.Dialog
-import android.os.Bundle
+import android.content.Context
 import android.view.KeyEvent
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentManager
 import com.stfalcon.imageviewer.R
-import com.stfalcon.imageviewer.StfalconImageViewer
-import com.stfalcon.imageviewer.listeners.OnDismissListener
-import com.stfalcon.imageviewer.listeners.OnImageChangeListener
-import com.stfalcon.imageviewer.loader.ImageLoader
-import com.stfalcon.imageviewer.loader.OverlayLoader
 import com.stfalcon.imageviewer.viewer.builder.BuilderData
 import com.stfalcon.imageviewer.viewer.view.ImageViewerView
-import kotlin.math.max
 
-class ImageViewerDialog<T>: DialogFragment() {
+internal class ImageViewerDialog<T>(
+    context: Context,
+    private val builderData: BuilderData<T>
+) {
 
-    private lateinit var dialog: AlertDialog
-    private lateinit var viewerView: ImageViewerView<T>
+    private val dialog: AlertDialog
+    private val viewerView: ImageViewerView<T> = ImageViewerView(context)
     private var animateOpen = true
-    private lateinit var builderData: BuilderData<T>
 
     private val dialogStyle: Int
         get() = if (builderData.shouldStatusBarHide)
@@ -46,42 +39,29 @@ class ImageViewerDialog<T>: DialogFragment() {
         else
             R.style.ImageViewerDialog_Default
 
-    companion object {
-        private const val builderDataKey = "BuilderDataKey"
-        fun <T> newInstance(builderData: BuilderData<T>): ImageViewerDialog<T> {
-            val args = Bundle()
-            args.putSerializable(builderDataKey, builderData)
-            val f = ImageViewerDialog<T>()
-            f.arguments = args
-            return f
-        }
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        builderData = arguments?.getSerializable(builderDataKey) as BuilderData<T>
+    init {
         setupViewerView()
         dialog = AlertDialog
-            .Builder(requireContext(), dialogStyle)
+            .Builder(context, dialogStyle)
             .setView(viewerView)
             .setOnKeyListener { _, keyCode, event -> onDialogKeyEvent(keyCode, event) }
             .create()
             .apply {
                 setOnShowListener { viewerView.open(builderData.transitionView, animateOpen) }
-                setOnDismissListener { (activity as? OnDismissListener)?.onDismiss() }
-}
-        return dialog
+                setOnDismissListener { builderData.onDismissListener?.onDismiss() }
+            }
     }
 
-    fun show(fragmentManager: FragmentManager, animate: Boolean) {
+    fun show(animate: Boolean) {
         animateOpen = animate
-        show(fragmentManager, "")
+        dialog.show()
     }
 
     fun close() {
         viewerView.close()
     }
 
-    override fun dismiss() {
+    fun dismiss() {
         dialog.dismiss()
     }
 
@@ -117,28 +97,20 @@ class ImageViewerDialog<T>: DialogFragment() {
     }
 
     private fun setupViewerView() {
-        viewerView = ImageViewerView(requireContext())
         viewerView.apply {
             isZoomingAllowed = builderData.isZoomingAllowed
             isSwipeToDismissAllowed = builderData.isSwipeToDismissAllowed
 
             containerPadding = builderData.containerPaddingPixels
             imagesMargin = builderData.imageMarginPixels
-            overlayView = (activity as? OverlayLoader<T>)?.loadOverlayFor(max(viewerView.currentPosition, builderData.startPosition),
-                this@ImageViewerDialog)
+            overlayView = builderData.overlayView
             imageFullFocusEnabled = builderData.imageFullFocusEnabled
 
             setBackgroundColor(builderData.backgroundColor)
-            val imageLoader = activity as? ImageLoader<T>
-            if (imageLoader != null) {
-                setImages(builderData.images, builderData.startPosition, imageLoader)
-            }
+            setImages(builderData.images, builderData.startPosition, builderData.imageLoader)
 
-            onPageChange = { position -> (activity as? OnImageChangeListener)?.onImageChange(position) }
-            onDismiss = {
-                dialog.dismiss()
-                (activity as? OnDismissListener)?.onDismiss()
-            }
+            onPageChange = { position -> builderData.imageChangeListener?.onImageChange(position) }
+            onDismiss = { dialog.dismiss() }
         }
     }
 }

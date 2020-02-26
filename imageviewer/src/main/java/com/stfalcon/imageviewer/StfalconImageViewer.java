@@ -16,15 +16,12 @@
 
 package com.stfalcon.imageviewer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.annotation.*;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-
 import com.stfalcon.imageviewer.listeners.OnDismissListener;
 import com.stfalcon.imageviewer.listeners.OnImageChangeListener;
 import com.stfalcon.imageviewer.loader.ImageLoader;
@@ -46,14 +43,14 @@ public class StfalconImageViewer<T> {
     protected StfalconImageViewer(@NonNull Context context, @NonNull BuilderData<T> builderData) {
         this.context = context;
         this.builderData = builderData;
-        this.dialog = ImageViewerDialog.Companion.newInstance(builderData);
+        this.dialog = new ImageViewerDialog<>(context, builderData);
     }
 
     /**
      * Displays the built viewer if passed list of images is not empty
      */
-    public void show(FragmentManager fragmentManager) {
-        show(fragmentManager, true);
+    public void show() {
+        show(true);
     }
 
     /**
@@ -61,9 +58,9 @@ public class StfalconImageViewer<T> {
      *
      * @param animate whether the passed transition view should be animated on open. Useful for screen rotation handling.
      */
-    public void show(FragmentManager fragmentManager, boolean animate) {
+    public void show(boolean animate) {
         if (!builderData.getImages().isEmpty()) {
-            dialog.show(fragmentManager, animate);
+            dialog.show(animate);
         } else {
             Log.w(context.getString(R.string.library_name),
                     "Images list cannot be empty! Viewer ignored.");
@@ -126,13 +123,13 @@ public class StfalconImageViewer<T> {
         private Context context;
         private BuilderData<T> data;
 
-        public Builder(Context context, T[] images) {
-            this(context, new ArrayList<>(Arrays.asList(images)));
+        public Builder(Context context, T[] images, ImageLoader<T> imageLoader) {
+            this(context, new ArrayList<>(Arrays.asList(images)), imageLoader);
         }
 
-        public Builder(Context context, List<T> images) {
+        public Builder(Context context, List<T> images, ImageLoader<T> imageLoader) {
             this.context = context;
-            this.data = new BuilderData<>(images);
+            this.data = new BuilderData<>(images, imageLoader);
         }
 
         /**
@@ -173,6 +170,17 @@ public class StfalconImageViewer<T> {
          */
         public Builder<T> withImageFullFocusEnabled(boolean enabled) {
             this.data.setImageFullFocusEnabled(enabled);
+            return this;
+        }
+
+        /**
+         * Sets custom overlay view to be shown over the viewer.
+         * Commonly used for image description or counter displaying.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withOverlayView(View view) {
+            this.data.setOverlayView(view);
             return this;
         }
 
@@ -283,9 +291,29 @@ public class StfalconImageViewer<T> {
         }
 
         /**
+         * Sets {@link OnImageChangeListener} for the viewer.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withImageChangeListener(OnImageChangeListener imageChangeListener) {
+            this.data.setImageChangeListener(imageChangeListener);
+            return this;
+        }
+
+        /**
+         * Sets {@link OnDismissListener} for viewer.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withDismissListener(OnDismissListener onDismissListener) {
+            this.data.setOnDismissListener(onDismissListener);
+            return this;
+        }
+
+        /**
          * Creates a {@link StfalconImageViewer} with the arguments supplied to this builder. It does not
          * show the dialog. This allows the user to do any extra processing
-         * before displaying the dialog. Use {@link #show(FragmentManager fragmentManager)} if you don't have any other processing
+         * before displaying the dialog. Use {@link #show()} if you don't have any other processing
          * to do and want this to be created and displayed.
          */
         public StfalconImageViewer<T> build() {
@@ -296,8 +324,8 @@ public class StfalconImageViewer<T> {
          * Creates the {@link StfalconImageViewer} with the arguments supplied to this builder and
          * shows the dialog.
          */
-        public StfalconImageViewer<T> show(FragmentManager fragmentManager) {
-            return show(fragmentManager, true);
+        public StfalconImageViewer<T> show() {
+            return show(true);
         }
 
         /**
@@ -306,9 +334,9 @@ public class StfalconImageViewer<T> {
          *
          * @param animate whether the passed transition view should be animated on open. Useful for screen rotation handling.
          */
-        public StfalconImageViewer<T> show(FragmentManager fragmentManager, boolean animate) {
+        public StfalconImageViewer<T> show(boolean animate) {
             StfalconImageViewer<T> viewer = build();
-            viewer.show(fragmentManager, animate);
+            viewer.show(animate);
             return viewer;
         }
     }

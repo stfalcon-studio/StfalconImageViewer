@@ -50,7 +50,7 @@ import com.stfalcon.imageviewer.common.pager.MultiTouchViewPager
 import com.stfalcon.imageviewer.loader.ImageLoader
 import com.stfalcon.imageviewer.viewer.adapter.ImagesPagerAdapter
 
-class ImageViewerView<T> @JvmOverloads constructor(
+internal class ImageViewerView<T> @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -82,12 +82,7 @@ class ImageViewerView<T> @JvmOverloads constructor(
     internal var overlayView: View? = null
         set(value) {
             field = value
-            value?.let {
-                if (it.parent != null) {
-                    (it.parent as? ViewGroup)?.removeView(it)
-                }
-                rootContainer.addView(it)
-            }
+            value?.let { rootContainer.addView(it) }
         }
     internal var imageFullFocusEnabled = false
 
