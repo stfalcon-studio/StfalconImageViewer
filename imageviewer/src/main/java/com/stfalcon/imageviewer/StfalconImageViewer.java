@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.annotation.*;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.stfalcon.imageviewer.listeners.OnDismissListener;
@@ -100,6 +101,13 @@ public class StfalconImageViewer<T> {
         } else {
             dialog.close();
         }
+    }
+
+    /**
+     * Sets the target fragment of the dialog
+     */
+    public void setTargetFragment(Fragment fragment, int requestCode) {
+        dialog.setTargetFragment(fragment, requestCode);
     }
 
     public int currentPosition() {

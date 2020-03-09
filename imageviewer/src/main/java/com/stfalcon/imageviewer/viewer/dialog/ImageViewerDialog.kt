@@ -22,6 +22,7 @@ import android.view.KeyEvent
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.stfalcon.imageviewer.R
 import com.stfalcon.imageviewer.StfalconImageViewer
@@ -67,7 +68,7 @@ class ImageViewerDialog<T>: DialogFragment() {
             .create()
             .apply {
                 setOnShowListener { viewerView.open(builderData.transitionView, animateOpen) }
-                setOnDismissListener { (activity as? OnDismissListener)?.onDismiss() }
+                setOnDismissListener { ((targetFragment ?: activity) as? OnDismissListener)?.onDismiss() }
 }
         return dialog
     }
@@ -124,19 +125,19 @@ class ImageViewerDialog<T>: DialogFragment() {
 
             containerPadding = builderData.containerPaddingPixels
             imagesMargin = builderData.imageMarginPixels
-            overlayView = (activity as? OverlayLoader<T>)?.loadOverlayFor(max(viewerView.currentPosition, builderData.startPosition),
+            overlayView = ((targetFragment ?: activity) as? OverlayLoader<T>)?.loadOverlayFor(max(viewerView.currentPosition, builderData.startPosition),
                 this@ImageViewerDialog)
 
             setBackgroundColor(builderData.backgroundColor)
-            val imageLoader = activity as? ImageLoader<T>
+            val imageLoader = (targetFragment ?: activity) as? ImageLoader<T>
             if (imageLoader != null) {
                 setImages(builderData.images, builderData.startPosition, imageLoader)
             }
 
-            onPageChange = { position -> (activity as? OnImageChangeListener)?.onImageChange(position) }
+            onPageChange = { position -> ((targetFragment ?: activity) as? OnImageChangeListener)?.onImageChange(position) }
             onDismiss = {
                 dialog.dismiss()
-                (activity as? OnDismissListener)?.onDismiss()
+                ((targetFragment ?: activity) as? OnDismissListener)?.onDismiss()
             }
         }
     }
