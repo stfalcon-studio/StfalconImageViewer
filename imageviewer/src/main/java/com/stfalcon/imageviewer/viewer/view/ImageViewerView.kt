@@ -256,6 +256,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
     }
 
     private fun prepareViewsForViewer() {
+        backgroundView.alpha = 1f
         transitionImageContainer.makeGone()
         imagesPager.makeVisible()
     }
