@@ -162,6 +162,18 @@ public class StfalconImageViewer<T> {
         }
 
         /**
+         * Sets image full focus enabled or disabled. When full focus is enabled, tapping to hide
+         * the overlay, zooming or double tapping will also hide the status bar, navigation bar
+         * and set the background to black so the only thing visible is the image.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withImageFullFocusEnabled(boolean enabled) {
+            this.data.setImageFullFocusEnabled(enabled);
+            return this;
+        }
+
+        /**
          * Sets custom overlay view to be shown over the viewer.
          * Commonly used for image description or counter displaying.
          *
