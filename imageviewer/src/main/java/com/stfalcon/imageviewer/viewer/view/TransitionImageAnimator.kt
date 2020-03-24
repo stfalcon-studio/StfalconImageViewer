@@ -21,9 +21,7 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
-import androidx.transition.AutoTransition
-import androidx.transition.Transition
-import androidx.transition.TransitionManager
+import androidx.transition.*
 import com.stfalcon.imageviewer.common.extensions.*
 
 internal class TransitionImageAnimator(
@@ -91,6 +89,7 @@ internal class TransitionImageAnimator(
 
             internalImageContainer.makeViewMatchParent()
             internalImage.makeViewMatchParent()
+            internalImage.scaleType = ImageView.ScaleType.FIT_CENTER
 
             internalRoot.applyMargin(
                 containerPadding[0],
@@ -126,6 +125,8 @@ internal class TransitionImageAnimator(
                 }
             }
 
+            internalImage.scaleType = it.scaleType
+
             resetRootTranslation()
         }
     }
@@ -144,9 +145,18 @@ internal class TransitionImageAnimator(
             .start()
     }
 
-    private fun createTransition(onTransitionEnd: (() -> Unit)? = null): Transition =
-        AutoTransition()
-            .setDuration(transitionDuration)
-            .setInterpolator(DecelerateInterpolator())
-            .addListener(onTransitionEnd = { onTransitionEnd?.invoke() })
+    private fun createTransition(onTransitionEnd: (() -> Unit)? = null): Transition  {
+        var transition =
+                TransitionSet ()
+                        .setOrdering(TransitionSet.ORDERING_TOGETHER)
+                        .addTransition(ChangeBounds())
+                        .addTransition(ChangeTransform())
+                        .addTransition(ChangeClipBounds())
+                        .addTransition(ChangeImageTransform())
+
+        return transition
+                .setDuration(transitionDuration)
+                .setInterpolator(DecelerateInterpolator())
+                .addListener(onTransitionEnd = { onTransitionEnd?.invoke() })
+    }
 }
