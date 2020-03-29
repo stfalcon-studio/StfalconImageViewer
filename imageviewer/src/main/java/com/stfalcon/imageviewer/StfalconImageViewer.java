@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import com.stfalcon.imageviewer.listeners.OnDismissListener;
 import com.stfalcon.imageviewer.listeners.OnImageChangeListener;
 import com.stfalcon.imageviewer.loader.ImageLoader;
+import com.stfalcon.imageviewer.viewer.viewholder.ViewHolderLoader;
 import com.stfalcon.imageviewer.viewer.builder.BuilderData;
 import com.stfalcon.imageviewer.viewer.dialog.ImageViewerDialog;
 
@@ -127,9 +128,20 @@ public class StfalconImageViewer<T> {
             this(context, new ArrayList<>(Arrays.asList(images)), imageLoader);
         }
 
+        public Builder(Context context, T[] images, ImageLoader<T> imageLoader,
+                       ViewHolderLoader<T> viewHolderLoader) {
+            this(context, new ArrayList<>(Arrays.asList(images)), imageLoader, viewHolderLoader);
+        }
+
         public Builder(Context context, List<T> images, ImageLoader<T> imageLoader) {
             this.context = context;
             this.data = new BuilderData<>(images, imageLoader);
+        }
+
+        public Builder(Context context, List<T> images, ImageLoader<T> imageLoader,
+                       ViewHolderLoader<T> viewHolderLoader) {
+            this.context = context;
+            this.data = new BuilderData<>(images, imageLoader, viewHolderLoader);
         }
 
         /**

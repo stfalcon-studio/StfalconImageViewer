@@ -46,7 +46,9 @@ import com.stfalcon.imageviewer.common.gestures.direction.SwipeDirection.UP
 import com.stfalcon.imageviewer.common.gestures.direction.SwipeDirectionDetector
 import com.stfalcon.imageviewer.common.gestures.dismiss.SwipeToDismissHandler
 import com.stfalcon.imageviewer.common.pager.MultiTouchViewPager
+import com.stfalcon.imageviewer.viewer.viewholder.DefaultViewHolderLoader
 import com.stfalcon.imageviewer.loader.ImageLoader
+import com.stfalcon.imageviewer.viewer.viewholder.ViewHolderLoader
 import com.stfalcon.imageviewer.viewer.adapter.ImagesPagerAdapter
 
 internal class ImageViewerView<T> @JvmOverloads constructor(
@@ -177,10 +179,12 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
         findViewById<View>(R.id.backgroundView).setBackgroundColor(color)
     }
 
-    internal fun setImages(images: List<T>, startPosition: Int, imageLoader: ImageLoader<T>) {
+    internal fun setImages(images: List<T>, startPosition: Int, imageLoader: ImageLoader<T>,
+                           viewHolderLoader: ViewHolderLoader<T>?) {
         this.images = images
         this.imageLoader = imageLoader
-        this.imagesAdapter = ImagesPagerAdapter(context, images, imageLoader, isZoomingAllowed)
+        this.imagesAdapter = ImagesPagerAdapter(context, images, imageLoader, isZoomingAllowed,
+                viewHolderLoader ?: DefaultViewHolderLoader())
         this.imagesPager.adapter = imagesAdapter
         this.startPosition = startPosition
     }
@@ -253,6 +257,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
     private fun prepareViewsForTransition() {
         transitionImageContainer.makeVisible()
         imagesPager.makeGone()
+        (imagesPager.adapter as? ImagesPagerAdapter<T>)?.onDialogClosed()
     }
 
     private fun prepareViewsForViewer() {

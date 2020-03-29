@@ -21,7 +21,9 @@ import android.view.View
 import android.widget.ImageView
 import com.stfalcon.imageviewer.listeners.OnDismissListener
 import com.stfalcon.imageviewer.listeners.OnImageChangeListener
+import com.stfalcon.imageviewer.viewer.viewholder.DefaultViewHolderLoader
 import com.stfalcon.imageviewer.loader.ImageLoader
+import com.stfalcon.imageviewer.viewer.viewholder.ViewHolderLoader
 
 internal class BuilderData<T>(
     val images: List<T>,
@@ -38,4 +40,10 @@ internal class BuilderData<T>(
     var isZoomingAllowed = true
     var isSwipeToDismissAllowed = true
     var transitionView: ImageView? = null
+    var viewHolderLoader: ViewHolderLoader<T>? = DefaultViewHolderLoader()
+
+    constructor(images: List<T>, imageLoader: ImageLoader<T>, viewHolderLoader: ViewHolderLoader<T>)
+            : this(images, imageLoader) {
+        this.viewHolderLoader = viewHolderLoader
+    }
 }
