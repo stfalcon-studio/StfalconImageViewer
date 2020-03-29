@@ -72,8 +72,8 @@ internal class ImageViewerDialog<T>(
     fun getCurrentPosition(): Int =
         viewerView.currentPosition
 
-    fun setCurrentPosition(position: Int): Int {
-        viewerView.currentPosition = position
+    fun setCurrentPosition(position: Int, smoothScroll: Boolean): Int {
+        viewerView.setCurrentPosition(position, smoothScroll)
         return viewerView.currentPosition
     }
 
