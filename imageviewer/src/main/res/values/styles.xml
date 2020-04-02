@@ -5,8 +5,11 @@
 
     <style name="ImageViewerDialog.NoStatusBar" parent="android:Theme.Translucent.NoTitleBar.Fullscreen"/>
 
-    <style name="ImageViewerDialog.Default" parent="android:Theme.Translucent.NoTitleBar">
+    <style name="ImageViewerDialog.DefaultBaseTheme" parent="android:Theme.Translucent.NoTitleBar">
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    
+    <style name="ImageViewerDialog.Default" parent="ImageViewerDialog.DefaultBaseTheme">
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
