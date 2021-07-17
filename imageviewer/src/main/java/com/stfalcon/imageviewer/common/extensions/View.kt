@@ -34,7 +34,7 @@ internal val View?.hitRect: Rect
     get() = Rect().also { this?.getHitRect(it) }
 
 internal val View?.isRectVisible: Boolean
-    get() = this != null && globalVisibleRect != localVisibleRect
+    get() = this != null && this?.getGlobalVisibleRect(Rect()) == true
 
 internal val View?.isVisible: Boolean
     get() = this != null && visibility == View.VISIBLE
