@@ -17,7 +17,9 @@
 package com.stfalcon.imageviewer.viewer.dialog
 
 import android.content.Context
+import android.os.Build
 import android.view.KeyEvent
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.stfalcon.imageviewer.R
@@ -37,7 +39,7 @@ internal class ImageViewerDialog<T>(
         get() = if (builderData.shouldStatusBarHide)
             R.style.ImageViewerDialog_NoStatusBar
         else
-            R.style.ImageViewerDialog_Default
+            builderData.dialogStyle
 
     init {
         setupViewerView()
@@ -50,6 +52,11 @@ internal class ImageViewerDialog<T>(
                 setOnShowListener { viewerView.open(builderData.transitionView, animateOpen) }
                 setOnDismissListener { builderData.onDismissListener?.onDismiss() }
             }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (builderData.shouldStatusBarTransparent) {
+                dialog.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            }
+        }
     }
 
     fun show(animate: Boolean) {
