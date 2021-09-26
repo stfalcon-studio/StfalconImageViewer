@@ -64,6 +64,10 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
             imagesPager.currentItem = value
         }
 
+    fun setCurrentPosition(position: Int, smoothScroll: Boolean) {
+        imagesPager.setCurrentItem(position, smoothScroll)
+    }
+
     internal var onDismiss: (() -> Unit)? = null
     internal var onPageChange: ((position: Int) -> Unit)? = null
 
