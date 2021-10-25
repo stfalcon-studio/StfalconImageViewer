@@ -17,6 +17,7 @@
 package com.stfalcon.imageviewer;
 
 import android.content.Context;
+import android.os.*;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -245,6 +246,28 @@ public class StfalconImageViewer<T> {
          */
         public Builder<T> withHiddenStatusBar(boolean value) {
             this.data.setShouldStatusBarHide(value);
+            return this;
+        }
+
+        /**
+         * Sets alert dialog style. ImageViewerDialog.Default by default.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        public Builder<T> withDialogStyle(int value) {
+            this.data.setDialogStyle(value);
+            return this;
+        }
+
+        /**
+         * Sets status bar transparency to allow drawing underneath it. False by default.
+         * Works only on API 21 and above.
+         *
+         * @return This Builder object to allow calls chaining
+         */
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+        public Builder<T> shouldStatusBarTransparent(boolean value) {
+            this.data.setShouldStatusBarTransparent(value);
             return this;
         }
 
