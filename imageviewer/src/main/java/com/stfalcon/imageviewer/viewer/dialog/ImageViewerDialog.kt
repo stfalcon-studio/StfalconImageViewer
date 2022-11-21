@@ -17,9 +17,12 @@
 package com.stfalcon.imageviewer.viewer.dialog
 
 import android.content.Context
+import android.graphics.Color
 import android.view.KeyEvent
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.WindowCompat
 import com.stfalcon.imageviewer.R
 import com.stfalcon.imageviewer.viewer.builder.BuilderData
 import com.stfalcon.imageviewer.viewer.view.ImageViewerView
@@ -46,6 +49,15 @@ internal class ImageViewerDialog<T>(
             .setView(viewerView)
             .setOnKeyListener { _, keyCode, event -> onDialogKeyEvent(keyCode, event) }
             .create()
+            .apply {
+                try {
+                    getWindow()!!.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                    getWindow()!!.setStatusBarColor(Color.BLACK);
+                    WindowCompat.getInsetsController(window!!, window!!.decorView)?.isAppearanceLightStatusBars = false
+                } catch (e: Throwable) {
+                    e.printStackTrace()
+                }
+            }
             .apply {
                 setOnShowListener { viewerView.open(builderData.transitionView, animateOpen) }
                 setOnDismissListener { builderData.onDismissListener?.onDismiss() }
