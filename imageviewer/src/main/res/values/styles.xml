@@ -3,11 +3,20 @@
 
     <style name="ImageViewerDialog" parent="android:Theme.Translucent.NoTitleBar"/>
 
-    <style name="ImageViewerDialog.NoStatusBar" parent="android:Theme.Translucent.NoTitleBar.Fullscreen"/>
+    <style name="ImageViewerDialog.NoStatusBar" parent="ImageViewerDialog.Default"/>
 
-    <style name="ImageViewerDialog.Default" parent="android:Theme.Translucent.NoTitleBar">
+    <style name="ImageViewerDialog.Default"  parent="Theme.MaterialComponents.DayNight.NoActionBar" >
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+
+
+
+        <item name="android:statusBarColor">#ffffff</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+
+
+
     </style>
 
 </resources>
