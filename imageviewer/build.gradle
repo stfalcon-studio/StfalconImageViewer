@@ -30,7 +30,7 @@ android {
                     // You can then customize attributes of the publication as shown below.
                     groupId = 'com.github.stfalcon'
                     artifactId = 'stfalcon-imageviewer'
-                    version = '1.0.1'
+                    version = '1.0.2'
                 }
             }
         }
