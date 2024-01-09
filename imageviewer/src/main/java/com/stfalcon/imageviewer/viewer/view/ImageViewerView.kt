@@ -201,7 +201,7 @@ internal class ImageViewerView<T> @JvmOverloads constructor(
     }
 
     internal fun close() {
-        if (shouldDismissToBottom) {
+        if (shouldDismissToBottom && ::swipeDismissHandler.isInitialized) {
             swipeDismissHandler.initiateDismissToBottom()
         } else {
             animateClose()
